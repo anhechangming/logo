@@ -1,0 +1,10 @@
+TO TRIANGLE
+
+REPEAT 3 [
+    FD 150
+    RT 120
+]
+
+END
+
+TRIANGLE

@@ -23,6 +23,9 @@ import type {
   ProcedureCallNode,
   ColorNode,
   ImportNode,
+  SketchNode,
+  TextureNode,
+  BrushNode,
 } from "./ast"
 
 // 防止无限循环 / 死循环卡死浏览器
@@ -81,6 +84,12 @@ export class Interpreter {
         return this.visitColor(node)
       case "Import":
         return this.visitImport(node)
+      case "Sketch":
+        return this.visitSketch(node)
+      case "Texture":
+        return this.visitTexture(node)
+      case "Brush":
+        return this.visitBrush(node)
       case "Clear":
         return this.engine.clear()
       default:
@@ -240,6 +249,22 @@ export class Interpreter {
   private visitColor(node: ColorNode): void {
     this.log(`COLOR ${node.color}`)
     this.engine.setColor(node.color)
+  }
+
+  private visitSketch(node: SketchNode): void {
+    this.log(`SKETCH ${node.enabled ? 'ON' : 'OFF'}`)
+    this.engine.setSketchMode(node.enabled)
+  }
+
+  private visitTexture(node: TextureNode): void {
+    this.log(`TEXTURE ${node.texture}`)
+    this.engine.setTexture(node.texture)
+  }
+
+  private visitBrush(node: BrushNode): void {
+    const size = this.evaluate(node.size) as number
+    this.log(`BRUSH ${size}`)
+    this.engine.setBrushSize(size)
   }
 
   private visitImport(node: ImportNode): void {

@@ -1,0 +1,34 @@
+IMPORT "examples/shapes.logo"
+
+LET size = 100
+
+IF size > 50 [
+
+    COLOR red
+
+    square
+]
+
+LET counter = 0
+
+WHILE counter < 3 [
+
+    COLOR blue
+
+    triangle
+
+    LET counter = counter + 1
+]
+
+FOR i 1 5 [
+
+    COLOR "#00AA00"
+
+    FD 50
+
+    RT 72
+]
+
+COLOR "#FF8800"
+
+star

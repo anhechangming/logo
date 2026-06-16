@@ -1,0 +1,31 @@
+SKETCH ON
+
+; 铅笔效果（半透明，适合素描）
+TEXTURE "pencil"
+BRUSH 2
+COLOR "#2c3e50"
+REPEAT 4 [FD 80 RT 90]
+
+; 移动位置
+PU
+FD 120
+PD
+
+; 马克笔效果（粗线条，半透明）
+TEXTURE "marker"
+BRUSH 5
+COLOR "#9b59b6"
+REPEAT 4 [FD 80 RT 90]
+
+; 移动位置
+PU
+FD 120
+PD
+
+; 墨水笔效果（细线条，高对比）
+TEXTURE "ink"
+BRUSH 1.5
+COLOR "#000000"
+REPEAT 4 [FD 80 RT 90]
+
+SKETCH OFF

@@ -1,0 +1,223 @@
+CLEAR
+
+
+TO SMALL_PETAL
+    REPEAT 2 [
+        REPEAT 10 [
+            FD 2
+            RT 9
+        ]
+        RT 90
+    ]
+END
+
+
+TO LONG_PETAL
+    REPEAT 2 [
+        REPEAT 15 [
+            FD 2.5
+            RT 6
+        ]
+        RT 90
+    ]
+END
+
+
+TO STAR_ARM
+    FD 35
+    RT 140
+    FD 35
+    LT 50
+END
+
+
+TO LEAF_SHAPE
+    REPEAT 2 [
+        REPEAT 10 [
+            FD 3
+            RT 9
+        ]
+        RT 90
+    ]
+END
+
+
+
+COLOR "#8E24AA" ; 深粉紫色
+REPEAT 8 [
+    SMALL_PETAL
+    RT 45
+]
+COLOR "#E91E63" ; 亮粉色圆心装饰
+REPEAT 12 [
+    FD 5
+    BK 5
+    RT 30
+]
+
+
+
+COLOR "#F48FB1"
+FOR i 1 8 [
+    LET angle_i = i * 45
+    PU
+    RT angle_i
+    FD 35         
+    PD
+    
+
+    REPEAT 5 [
+        SMALL_PETAL
+        RT 72
+    ]
+    
+    PU
+    BK 35        
+    LT angle_i  
+]
+
+
+
+FOR j 1 8 [
+    LET angle_j = j * 45
+    
+
+    COLOR "#00E5FF" 
+    PU
+    RT angle_j + 22.5
+    FD 55
+    PD
+    REPEAT 8 [
+        STAR_ARM
+    ]
+    PU
+    BK 55
+    LT angle_j + 22.5
+    
+
+    COLOR "#00ATC"
+    PU
+    RT angle_j
+    FD 75
+    PD
+
+    REPEAT 16 [
+        FD 10
+        RT 45
+        FD 5
+        BK 5
+        LT 45
+        BK 10
+        RT 22.5
+    ]
+    PU
+    BK 75
+    LT angle_j
+]
+
+COLOR "#0D47A1"PU
+FD 105
+RT 90
+PD
+REPEAT 180 [
+    FD 3.65        
+    RT 2
+]
+PU
+LT 90
+BK 105
+
+PU
+FD 120
+RT 90
+PD
+REPEAT 180 [
+    FD 4.18        ; 绘制外隔离圆
+    RT 2
+]
+PU
+LT 90
+BK 120
+
+; 在双环中间织入一层青色蕾丝网格
+COLOR "#00ACC1" ; 亮青色
+FOR m 1 36 [
+    LET angle_m = m * 10
+    PU
+    RT angle_m
+    FD 108
+    PD
+    FD 12
+    RT 45
+    FD 5
+    PU
+    BK 5
+    LT 45
+    BK 12
+    BK 108
+    LT angle_m
+]
+
+
+; === 【第五层：外圈天蓝菊花海与深蓝衬叶】 ===
+; 这是原图最显眼、最外层的主体大花圈
+FOR k 1 24 [
+    LET angle_k = k * 15
+    
+    ; 1. 先在底下垫上深蓝色的衬叶
+    COLOR "#1A237E" ; 深蓝色叶片
+    PU
+    RT angle_k + 7.5 ; 稍微错开，当作背景
+    FD 125
+    PD
+    LEAF_SHAPE
+    PU
+    BK 125
+    LT angle_k + 7.5
+    
+    ; 2. 绘制主体天蓝色大菊花
+    COLOR "#4FC3F7" ; 天蓝色
+    PU
+    RT angle_k
+    FD 135
+    PD
+    
+    ; 绘制一朵多瓣菊花
+    REPEAT 12 [
+        LONG_PETAL
+        RT 30
+    ]
+    
+    ; 菊花中心的亮蓝色小圆芯
+    COLOR "#00E5FF" ; 亮青蓝
+    REPEAT 8 [
+        FD 6
+        BK 6
+        RT 45
+    ]
+    
+    PU
+    BK 135
+    LT angle_k
+]
+
+
+; === 【第六层：外沿蒂芙尼蓝碎花点缀】 ===
+COLOR "#80DEEA" ; 淡蒂芙尼蓝
+FOR n 1 24 [
+    LET angle_n = n * 15
+    PU
+    RT angle_n + 7.5
+    FD 175
+    PD
+    
+    ; 最外围的微型五角星芒装饰
+    REPEAT 5 [
+        FD 8
+        RT 144
+    ]
+    
+    PU
+    BK 175
+    LT angle_n + 7.5
+]

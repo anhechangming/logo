@@ -179,6 +179,131 @@ FOR i 1 18 [
     RT 20
 ]`,
   },
+  {
+    id: "sketch-demo",
+    name: "手绘风格演示",
+    description: "SKETCH 模式 + 笔触纹理效果",
+    code: `; 手绘风格示例
+; 先画精确的框架
+COLOR "#95a5a6"
+REPEAT 4 [
+    FD 150
+    RT 90
+]
+
+; 开启手绘模式
+SKETCH ON
+TEXTURE "pencil"
+BRUSH 3
+
+; 画手绘风格的花朵
+COLOR "#e74c3c"
+REPEAT 12 [
+    REPEAT 4 [
+        FD 80
+        RT 90
+    ]
+    RT 30
+]
+
+; 切换到马克笔效果
+TEXTURE "marker"
+BRUSH 5
+COLOR "#3498db"
+PU
+RT 90
+FD 200
+LT 90
+PD
+REPEAT 6 [
+    FD 100
+    RT 60
+]
+
+; 关闭手绘模式
+SKETCH OFF`,
+  },
+  {
+    id: "sketch-tree",
+    name: "手绘树木",
+    description: "用手绘模式画一棵艺术感的树",
+    code: `; 手绘风格的树
+SKETCH ON
+TEXTURE "pencil"
+BRUSH 4
+
+; 树干
+COLOR "#8b4513"
+REPEAT 2 [
+    FD 80
+    RT 90
+    FD 20
+    RT 90
+]
+
+; 树冠
+PU
+FD 40
+LT 90
+FD 10
+RT 90
+PD
+
+COLOR "#2ecc71"
+BRUSH 6
+TEXTURE "marker"
+
+REPEAT 18 [
+    FD 50
+    BK 50
+    RT 20
+]
+
+SKETCH OFF`,
+  },
+  {
+    id: "sketch-house",
+    name: "手绘房子",
+    description: "结合精确线条和手绘风格",
+    code: `; 手绘风格的房子
+; 房子主体（精确线条）
+COLOR "#e67e22"
+REPEAT 4 [
+    FD 120
+    RT 90
+]
+
+; 屋顶（手绘风格）
+SKETCH ON
+TEXTURE "ink"
+BRUSH 3
+COLOR "#c0392b"
+LT 45
+FD 85
+RT 90
+FD 85
+
+; 门（马克笔效果）
+SKETCH OFF
+PU
+BK 85
+RT 135
+FD 40
+RT 90
+FD 30
+PD
+
+SKETCH ON
+TEXTURE "marker"
+BRUSH 2
+COLOR "#34495e"
+REPEAT 4 [
+    FD 40
+    RT 90
+]
+
+SKETCH OFF`,
+  },
 ]
 
 export const DEFAULT_CODE = EXAMPLES[2].code

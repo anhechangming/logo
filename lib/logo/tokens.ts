@@ -21,6 +21,12 @@ export enum TokenType {
   IMPORT = "IMPORT",
   COLOR = "COLOR",
   CLEAR = "CLEAR",
+  // 手绘模式命令
+  SKETCH = "SKETCH",
+  TEXTURE = "TEXTURE",
+  BRUSH = "BRUSH",
+  ON = "ON",
+  OFF = "OFF",
   // 标识符与常量
   IDENTIFIER = "IDENTIFIER",
   NUMBER = "NUMBER",
@@ -67,6 +73,11 @@ export const KEYWORDS: Record<string, TokenType> = {
   IMPORT: TokenType.IMPORT,
   COLOR: TokenType.COLOR,
   CLEAR: TokenType.CLEAR,
+  SKETCH: TokenType.SKETCH,
+  TEXTURE: TokenType.TEXTURE,
+  BRUSH: TokenType.BRUSH,
+  ON: TokenType.ON,
+  OFF: TokenType.OFF,
 }
 
 export interface Token {

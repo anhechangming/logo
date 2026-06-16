@@ -27,6 +27,14 @@ const GROUPS: RefGroup[] = [
     ],
   },
   {
+    title: "手绘风格",
+    items: [
+      { syntax: "SKETCH ON / SKETCH OFF", desc: "开启/关闭手绘模式（线条抖动效果）" },
+      { syntax: "TEXTURE \"pencil\"", desc: "设置笔触纹理：pen（默认）/ pencil（铅笔）/ marker（马克笔）/ ink（墨水笔）" },
+      { syntax: "BRUSH 5", desc: "设置笔触粗细（默认 2）" },
+    ],
+  },
+  {
     title: "变量与表达式",
     items: [
       { syntax: "LET x = 10 + 5", desc: "定义/赋值变量" },

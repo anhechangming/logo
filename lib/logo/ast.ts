@@ -13,6 +13,9 @@ export type ASTNode =
   | ColorNode
   | ImportNode
   | ClearNode
+  | SketchNode
+  | TextureNode
+  | BrushNode
   | NumberNode
   | StringNode
   | IdentifierNode
@@ -113,4 +116,19 @@ export interface ImportNode {
 
 export interface ClearNode {
   kind: "Clear"
+}
+
+export interface SketchNode {
+  kind: "Sketch"
+  enabled: boolean  // true for ON, false for OFF
+}
+
+export interface TextureNode {
+  kind: "Texture"
+  texture: string  // "pen" | "pencil" | "marker" | "ink"
+}
+
+export interface BrushNode {
+  kind: "Brush"
+  size: ASTNode  // 表达式，求值为数字
 }

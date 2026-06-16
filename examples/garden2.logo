@@ -1,0 +1,92 @@
+CLEAR
+
+TO PETAL
+    REPEAT 2 [
+        FD 60
+        RT 45
+        FD 60
+        RT 135
+    ]
+END
+
+
+TO LEAF
+    REPEAT 2 [
+        FD 30
+        RT 35
+        FD 30
+        RT 145
+    ]
+END
+
+
+TO FLOWER_RING
+    REPEAT 24 [
+        PETAL
+        RT 15
+    ]
+END
+
+
+TO BIG_FLOWER
+    REPEAT 36 [
+        FD 20
+        PETAL
+        BK 20
+        RT 10
+    ]
+END
+
+
+TO STAR
+    REPEAT 12 [
+        FD 120
+        BK 120
+        RT 30
+    ]
+END
+
+
+TO LEAF_RING
+    REPEAT 36 [
+        PU
+        FD 150
+        PD
+
+        LEAF
+
+        PU
+        BK 150
+        PD
+
+        RT 10
+    ]
+END
+
+
+COLOR "#FFAA00"
+
+REPEAT 36 [
+    FD 50
+    BK 50
+    RT 10
+]
+
+
+COLOR "#FF3366"
+FLOWER_RING
+
+
+
+COLOR "#AA33FF"
+BIG_FLOWER
+
+
+
+COLOR "#0099FF"
+STAR
+
+
+
+COLOR "#00AA66"
+LEAF_RING

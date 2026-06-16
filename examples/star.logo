@@ -1,0 +1,10 @@
+TO STAR
+
+REPEAT 5 [
+    FD 200
+    RT 144
+]
+
+END
+
+STAR

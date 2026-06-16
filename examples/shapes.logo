@@ -1,0 +1,34 @@
+TO square
+
+    REPEAT 4 [
+
+        FD 100
+
+        RT 90
+    ]
+
+END
+
+
+TO triangle
+
+    REPEAT 3 [
+
+        FD 120
+
+        RT 120
+    ]
+
+END
+
+
+TO star
+
+    REPEAT 5 [
+
+        FD 200
+
+        RT 144
+    ]
+
+END

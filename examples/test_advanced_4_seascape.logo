@@ -1,0 +1,217 @@
+; ====================================
+; 🎨 高级手绘测试 4: 海浪与帆船（自然风景）
+; ====================================
+; 动态波浪 + 帆船 + 海鸥，展示复杂场景构图
+
+; === 第一部分：绘制海浪（3层波浪） ===
+SKETCH ON
+TEXTURE "marker"
+BRUSH 3
+
+; 最远处的海浪（淡蓝）
+COLOR "#95a5a6"
+PU
+LT 90
+FD 150
+RT 90
+PD
+
+LET x = 0
+WHILE x < 12 [
+    FD 25
+    RT 20
+    FD 20
+    LT 40
+    FD 20
+    RT 20
+    LET x = x + 1
+]
+
+; 中间层海浪（中蓝）
+COLOR "#5dade2"
+PU
+RT 90
+FD 40
+LT 90
+BK 300
+PD
+
+LET x = 0
+WHILE x < 12 [
+    FD 25
+    RT 25
+    FD 20
+    LT 50
+    FD 20
+    RT 25
+    LET x = x + 1
+]
+
+; 最近的海浪（深蓝）
+COLOR "#2980b9"
+BRUSH 4
+PU
+RT 90
+FD 40
+LT 90
+BK 300
+PD
+
+LET x = 0
+WHILE x < 12 [
+    FD 25
+    RT 30
+    FD 20
+    LT 60
+    FD 20
+    RT 30
+    LET x = x + 1
+]
+
+; === 第二部分：绘制帆船 ===
+; 回到中心位置
+PU
+RT 90
+BK 120
+LT 90
+BK 150
+PD
+
+; 船身（梯形）
+SKETCH OFF
+COLOR "#8b4513"
+BRUSH 2
+FD 80
+RT 110
+FD 50
+RT 70
+FD 60
+RT 70
+FD 50
+RT 110
+
+; 桅杆
+PU
+FD 40
+PD
+SKETCH ON
+TEXTURE "ink"
+BRUSH 2
+COLOR "#34495e"
+LT 90
+FD 100
+
+; 主帆（三角形）
+TEXTURE "pencil"
+COLOR "#ecf0f1"
+BRUSH 2
+RT 140
+FD 70
+RT 100
+FD 85
+
+; 副帆（小三角形）
+PU
+BK 85
+PD
+LT 150
+FD 50
+LT 120
+FD 60
+
+; === 第三部分：海鸥（3只） ===
+; 海鸥 1
+PU
+RT 90
+FD 120
+LT 90
+FD 80
+PD
+
+BRUSH 1
+COLOR "#2c3e50"
+TEXTURE "pencil"
+
+; 左翅
+LT 20
+FD 15
+RT 160
+FD 15
+LT 140
+
+; 右翅
+FD 15
+RT 160
+FD 15
+
+; 海鸥 2（更远，更小）
+PU
+RT 180
+FD 50
+LT 90
+FD 30
+PD
+
+BRUSH 0.8
+LT 20
+FD 10
+RT 160
+FD 10
+LT 140
+FD 10
+RT 160
+FD 10
+
+; 海鸥 3
+PU
+RT 200
+FD 80
+PD
+
+BRUSH 1
+LT 20
+FD 12
+RT 160
+FD 12
+LT 140
+FD 12
+RT 160
+FD 12
+
+; === 第四部分：太阳（渐变圆盘） ===
+PU
+LT 45
+FD 200
+PD
+
+TEXTURE "marker"
+BRUSH 3
+COLOR "#f39c12"
+
+; 太阳主体
+REPEAT 36 [
+    FD 3
+    RT 10
+]
+
+; 太阳光线（8条）
+BRUSH 1
+FOR i 1 8 [
+    PU
+    RT 45
+    PD
+    FD 30
+    BK 30
+]
+
+SKETCH OFF
+
+; ====================================
+; 说明：
+; - 4层结构：海浪（远中近）+ 帆船 + 海鸥 + 太阳
+; - 动态波浪用 WHILE + 三角函数近似
+; - 3只不同大小的海鸥营造空间感
+; - 混合精确模式（船身）和手绘模式（海浪、帆）
+; - 笔触从 0.8 到 4，展示粗细变化
+; - 总计约 200 行绘图指令，展示复杂场景
+; ====================================

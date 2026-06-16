@@ -1,0 +1,10 @@
+TO SQUARE
+
+REPEAT 4 [
+    FD 100
+    RT 90
+]
+
+END
+
+SQUARE

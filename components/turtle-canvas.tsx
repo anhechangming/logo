@@ -125,11 +125,28 @@ export const TurtleCanvas = forwardRef<TurtleCanvasHandle, TurtleCanvasProps>(fu
         const p1 = project(s.x1, s.y1, w, h, scale, offset)
         const p2 = project(s.x2, s.y2, w, h, scale, offset)
         ctx.strokeStyle = s.color
-        ctx.lineWidth = 2
+        ctx.lineWidth = s.brushSize || 2
+
+        // 应用笔触纹理效果
+        if (s.texture === "pencil") {
+          ctx.globalAlpha = 0.7
+          ctx.lineCap = "round"
+        } else if (s.texture === "marker") {
+          ctx.lineWidth = (s.brushSize || 2) * 1.5
+          ctx.globalAlpha = 0.6
+        } else if (s.texture === "ink") {
+          ctx.lineWidth = (s.brushSize || 2) * 0.8
+          ctx.globalAlpha = 0.9
+        } else {
+          ctx.globalAlpha = 1
+          ctx.lineCap = "round"
+        }
+
         ctx.beginPath()
         ctx.moveTo(p1.cx, p1.cy)
         ctx.lineTo(p2.cx, p2.cy)
         ctx.stroke()
+        ctx.globalAlpha = 1
       }
       turtle = step.type === "clear" ? step.state : (step as { to?: TurtleState; state?: TurtleState }).to ?? (step as { state?: TurtleState }).state ?? turtle
     }
@@ -144,23 +161,44 @@ export const TurtleCanvas = forwardRef<TurtleCanvasHandle, TurtleCanvasProps>(fu
         const midY = s.y1 + (s.y2 - s.y1) * frac
         const pm = project(midX, midY, w, h, scale, offset)
         ctx.strokeStyle = s.color
-        ctx.lineWidth = 2
+        ctx.lineWidth = s.brushSize || 2
+
+        // 应用笔触纹理效果
+        if (s.texture === "pencil") {
+          ctx.globalAlpha = 0.7
+          ctx.lineCap = "round"
+        } else if (s.texture === "marker") {
+          ctx.lineWidth = (s.brushSize || 2) * 1.5
+          ctx.globalAlpha = 0.6
+        } else if (s.texture === "ink") {
+          ctx.lineWidth = (s.brushSize || 2) * 0.8
+          ctx.globalAlpha = 0.9
+        } else {
+          ctx.globalAlpha = 1
+          ctx.lineCap = "round"
+        }
+
         ctx.beginPath()
         ctx.moveTo(p1.cx, p1.cy)
         ctx.lineTo(pm.cx, pm.cy)
         ctx.stroke()
+        ctx.globalAlpha = 1
+
         turtle = {
           x: midX,
           y: midY,
           heading: step.to.heading,
           penDown: step.to.penDown,
           color: s.color,
+          texture: s.texture || "pen",
+          sketchMode: false,
+          brushSize: s.brushSize || 2,
         }
       } else {
         turtle = (step as { to?: TurtleState; state?: TurtleState }).to ?? (step as { state?: TurtleState }).state ?? turtle
       }
     } else if (turtle === null && steps.length === 0) {
-      turtle = { x: 0, y: 0, heading: 0, penDown: true, color: readCanvasVar("--canvas-turtle") }
+      turtle = { x: 0, y: 0, heading: 0, penDown: true, color: readCanvasVar("--canvas-turtle"), texture: "pen", sketchMode: false, brushSize: 2 }
     }
 
     // 绘制海龟（三角形指示朝向）

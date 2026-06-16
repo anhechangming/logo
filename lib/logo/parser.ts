@@ -15,6 +15,9 @@ import type {
   ForNode,
   ColorNode,
   ImportNode,
+  SketchNode,
+  TextureNode,
+  BrushNode,
 } from "./ast"
 
 const COMMAND_TYPES = new Set<TokenType>([
@@ -100,6 +103,12 @@ export class Parser {
         return this.colorStatement()
       case TokenType.IMPORT:
         return this.importStatement()
+      case TokenType.SKETCH:
+        return this.sketchStatement()
+      case TokenType.TEXTURE:
+        return this.textureStatement()
+      case TokenType.BRUSH:
+        return this.brushStatement()
       case TokenType.IDENTIFIER:
         return this.procedureCall()
       case TokenType.CLEAR:
@@ -150,6 +159,36 @@ export class Parser {
     this.eat(TokenType.IMPORT)
     const filename = String(this.eat(TokenType.STRING).value)
     return { kind: "Import", filename }
+  }
+
+  private sketchStatement(): SketchNode {
+    this.eat(TokenType.SKETCH)
+    const token = this.currentToken
+    if (token.type === TokenType.ON) {
+      this.advance()
+      return { kind: "Sketch", enabled: true }
+    }
+    if (token.type === TokenType.OFF) {
+      this.advance()
+      return { kind: "Sketch", enabled: false }
+    }
+    this.error("SKETCH 后应为 ON 或 OFF")
+  }
+
+  private textureStatement(): TextureNode {
+    this.eat(TokenType.TEXTURE)
+    const token = this.currentToken
+    if (token.type === TokenType.STRING || token.type === TokenType.IDENTIFIER) {
+      this.advance()
+      return { kind: "Texture", texture: String(token.value) }
+    }
+    this.error("TEXTURE 后应为字符串或标识符")
+  }
+
+  private brushStatement(): BrushNode {
+    this.eat(TokenType.BRUSH)
+    const size = this.expression()
+    return { kind: "Brush", size }
   }
 
   private procedureCall(): ProcedureCallNode {
